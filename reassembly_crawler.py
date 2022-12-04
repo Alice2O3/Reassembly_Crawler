@@ -39,7 +39,7 @@ class Reassembly_Crawler:
 		return quote(url, encoding=Reassembly_Crawler.default_encoding)
 	
 	#proxies and headers
-	listening_port = 10808
+	listening_port = 7890
 	using_proxies = {
 		'https': f'http://127.0.0.1:{listening_port}',
 		'http': f'http://127.0.0.1:{listening_port}'
@@ -144,6 +144,9 @@ class Reassembly_Crawler:
 		self.download_num = download_num
 		self.check_update = check_update
 		self.grouped = grouped
+		#Timing
+		self.start_time = 0
+		self.finish_time = 0
 
 	def write_to_stream(self, string, file_stream, flush = True):
 		file_stream.write((string + '\n').encode(Reassembly_Crawler.default_encoding))
@@ -390,13 +393,13 @@ class Reassembly_Crawler:
 		self.session.close()
 
 	def start_program_dry(self):
-		time.perf_counter()
+		self.start_time = time.time()
 		self.show_message('[START] Session Start', True)
 		self.show_message(f'[NOTICE] Crawler is now running at {self.crawler_mode} Mode', True)
 
 	def end_program_dry(self):
-		finish_time = time.perf_counter()
-		self.show_message(f'[END] Program Finished in {finish_time:.2f}s', True)
+		self.finish_time = time.time()
+		self.show_message(f'[END] Program Finished in {(self.finish_time - self.start_time):.2f}s', True)
 		self.log_stream.close()
 
 	def check_directory(self):

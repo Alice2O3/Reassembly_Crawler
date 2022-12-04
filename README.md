@@ -9,10 +9,10 @@ System: Windows
 I recommend using conda env to use the script:
 
 ```
-conda create -n python38
+conda create -n reassembly_crawler
+conda activate reassembly_crawler
+conda install click BeautifulSoup4 requests
 ```
-
-And run `init.bat` to download the dependencies.
 
 After that, run `check_update.bat` to get the up-to-date links. By default, these are stored at `Inputs` directory.
 

@@ -41,8 +41,8 @@ class Reassembly_Crawler:
 	#proxies and headers
 	listening_port = 10808
 	using_proxies = {
-		'https': f'http://127.0.0.1:{listening_port + 1}',
-		'http': f'http://127.0.0.1:{listening_port + 1}'
+		'https': f'http://127.0.0.1:{listening_port}',
+		'http': f'http://127.0.0.1:{listening_port}'
 	}
 	proxies = None
 	headers = {
